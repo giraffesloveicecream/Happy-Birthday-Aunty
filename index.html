@@ -91,10 +91,11 @@ canvas {
   </style>
 </head>
 <body>
-  <div class="stage">
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e34f61629.mp3?filename=happy-birthday-113584.mp3" type="audio/mpeg">
+  </audio>  <div class="stage">
     <canvas id="fireworks"></canvas>
     <div class="floating-emojis" id="emoji-layer"></div><div class="glow-text">Happy Birthday Aunty! 💐</div>
-<button class="btn" id="click-btn">Click Here 💖</button>
 <div class="message" id="cursive-message"></div>
 
   </div>  <script>
@@ -160,15 +161,9 @@ canvas {
     }
     drawFireworks();
 
-    // Button click
-    const btn = document.getElementById('click-btn');
+    // Auto start message and fireworks on load
     const messageEl = document.getElementById('cursive-message');
     const message = 'Thanks for being the most sweetest and kind-hearted aunty who spreads happiness all around! ☺️❤️';
-
-    btn.addEventListener('click', () => {
-      for (let i = 0; i < 6; i++) createFirework(rand(100, W - 100), rand(100, H / 2));
-      typeText(message, messageEl);
-    });
 
     function typeText(text, el) {
       el.textContent = '';
@@ -180,5 +175,12 @@ canvas {
         if (i >= text.length) clearInterval(interval);
       }, 40);
     }
+
+    window.onload = () => {
+      for (let i = 0; i < 6; i++) createFirework(rand(100, W - 100), rand(100, H / 2));
+      typeText(message, messageEl);
+      const music = document.getElementById('bg-music');
+      music.volume = 0.4;
+    };
   </script></body>
 </html>
