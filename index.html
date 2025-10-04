@@ -7,254 +7,178 @@
   <title>Happy Birthday Aunty! 💐</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b1020;
-      --accent1:#ff6b6b;
-      --accent2:#ffd166;
-      --accent3:#6bf178;
-      --glass: rgba(255,255,255,0.06);
+    :root {
+      --bg1: #ff9a9e;
+      --bg2: #fecfef;
+      --accent1: #ff69b4;
+      --accent2: #ff85c1;
+      --accent3: #ffffff;
     }
-    html,body{height:100%;margin:0;font-family:Montserrat,system-ui,Arial;background:linear-gradient(180deg,var(--bg) 0%, #1b2440 100%);overflow:hidden;color:white}
-    .stage{position:relative;width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px;box-sizing:border-box}/* Glowing block letters */
-.headline{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center}
-.headline .word{display:inline-flex;gap:8px}
-.glow-letter{
-  display:inline-block;
-  font-weight:900;
-  font-size:clamp(36px,8vw,110px);
-  line-height:0.85;
-  padding:10px 14px;
-  background:linear-gradient(90deg,#ffffff08,#ffffff10);
-  border-radius:12px;
-  box-shadow:0 8px 30px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.02) inset;
-  transform:translateY(0);
-  animation:float 3s ease-in-out infinite;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  color:white;
-  -webkit-text-stroke: 2px rgba(255,255,255,0.08);
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Montserrat, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow: hidden;
+      color: white;
+    }.stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
 }
-.glow-letter span{display:inline-block; padding:8px 12px; border-radius:8px; background: linear-gradient(90deg,var(--accent1),var(--accent2));
-  box-shadow: 0 6px 28px rgba(255,107,107,0.18), 0 0 40px rgba(255,180,90,0.12);
-  backdrop-filter: blur(6px);
-  transition:transform .3s ease, box-shadow .3s ease;
-  text-shadow:0 2px 8px rgba(255,255,255,0.12), 0 0 18px rgba(255,107,107,0.2);
+
+.glow-text {
+  font-weight: 900;
+  font-size: clamp(40px, 10vw, 120px);
+  color: #fff;
+  text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4, 0 0 60px #ff69b4;
+  animation: glow 2s ease-in-out infinite alternate;
 }
-.glow-letter span:hover{transform:translateY(-6px) scale(1.02); box-shadow:0 10px 40px rgba(255,107,107,0.28)}
-@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+@keyframes glow {
+  from { text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff85c1, 0 0 60px #ff85c1; }
+  to { text-shadow: 0 0 30px #ffffff, 0 0 60px #ffffff, 0 0 90px #ffffff; }
+}
 
-/* Emoji confetti background */
-.floating-emojis{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.floating-emojis i{position:absolute;font-size:24px;opacity:0.95;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.5));animation:pop 8s linear infinite}
-@keyframes pop{0%{transform:translateY(-10vh) rotate(0) scale(.8);opacity:0}5%{opacity:1}100%{transform:translateY(110vh) rotate(360deg) scale(1.05);opacity:0}}
+.floating-emojis i {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.9;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-10%); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
 
-/* Controls */
-.controls{display:flex;gap:12px;align-items:center;z-index:20}
-.btn{background:linear-gradient(90deg,var(--accent2),var(--accent1));border:none;padding:12px 20px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow: 0 8px 30px rgba(0,0,0,0.45);transform:translateZ(0);transition:transform .18s ease;}
-.btn:active{transform:translateY(2px) scale(.995)}
+.btn {
+  background: linear-gradient(90deg, #ff69b4, #ff85c1);
+  border: none;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+.btn:hover { transform: scale(1.05); }
 
-/* Message box */
-.message-wrap{width:min(880px,92%);max-width:1100px;text-align:center;margin-top:8px}
-.message-card{background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:26px;border-radius:18px;border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px);min-height:110px;display:flex;align-items:center;justify-content:center;position:relative}
-.cursive{font-family:'Great Vibes', cursive;font-size:clamp(18px,3.2vw,34px);color:#fff;opacity:0;white-space:pre-wrap}
-.caret{display:inline-block;width:10px;height:1.1em;background:linear-gradient(180deg,#fff,#ffd166);margin-left:6px;animation:blink .9s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
+.message {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(20px, 4vw, 40px);
+  color: white;
+  margin-top: 20px;
+  white-space: pre-wrap;
+  opacity: 0;
+}
 
-/* fireworks canvas layering */
-canvas{position:absolute;inset:0;z-index:5;pointer-events:none}
-
-/* small footer */
-.footer{position:absolute;bottom:18px;width:100%;text-align:center;opacity:0.6;font-size:13px}
-
-/* responsive tweaks */
-@media (max-width:520px){.glow-letter span{padding:6px 8px}}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 
   </style>
 </head>
 <body>
   <div class="stage">
-    <canvas id="fxCanvas"></canvas>
-    <div class="floating-emojis" id="emojiLayer"></div><div class="headline" aria-hidden="false">
-  <div class="word">
-    <!-- We'll animate each letter separately -->
-    <div class="glow-letter" id="letters"></div>
-  </div>
-  <div style="align-self:center;margin-left:8px;font-size:28px;opacity:0.95">💐</div>
-</div>
-
-<div class="controls">
-  <button class="btn" id="celebrateBtn">Click here 🎉</button>
-</div>
-
-<div class="message-wrap">
-  <div class="message-card" id="messageCard">
-    <div class="cursive" id="cursiveText" aria-live="polite"></div>
-  </div>
-</div>
-
-<div class="footer">All smiles, hugs, hearts and love — made with ❤️</div>
+    <canvas id="fireworks"></canvas>
+    <div class="floating-emojis" id="emoji-layer"></div><div class="glow-text">Happy Birthday Aunty! 💐</div>
+<button class="btn" id="click-btn">Click Here 💖</button>
+<div class="message" id="cursive-message"></div>
 
   </div>  <script>
-    /* Helper: create glowing block letters with staggered animation */
-    const lettersContainer = document.getElementById('letters');
-    const headlineText = 'Happy Birthday Aunty!';
-    function makeLetters(text){
-      lettersContainer.innerHTML='';
-      const words = text.split(' ');
-      words.forEach((w,wi)=>{
-        const wordWrap = document.createElement('div');
-        wordWrap.className='word-wrap';
-        Array.from(w).forEach((ch,i)=>{
-          const el = document.createElement('div');
-          el.className='glow-letter';
-          const span = document.createElement('span');
-          span.textContent = ch;
-          el.appendChild(span);
-          // stagger animation delay
-          el.style.animationDelay = (i*80 + wi*100)+'ms';
-          lettersContainer.appendChild(el);
-        });
-        // space
-        const spacer = document.createElement('div'); spacer.style.width='10px'; spacer.style.display='inline-block'; lettersContainer.appendChild(spacer);
-      })
-    }
-    makeLetters(headlineText.toUpperCase());
+    // Emoji background
+    const emojis = ['☺️', '😊', '😍', '😘', '🤗', '💖', '💝', '💐', '🌸', '❤️', '🤍', '🥰', '🎈', '🎉'];
+    const emojiLayer = document.getElementById('emoji-layer');
 
-    /* Floating emoji confetti */
-    const emojis = ['☺️','😊','😍','😘','🤗','🤩','💖','💝','💐','🌸','🌼','🌟','✨','💞','❤️','🤍','🥰','🎈','🎉'];
-    const emojiLayer = document.getElementById('emojiLayer');
-    function spawnEmojis(n=30){
-      for(let i=0;i<n;i++){
-        const el = document.createElement('i');
-        el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-        el.style.left = Math.random()*100+'%';
-        el.style.top = (-10 - Math.random()*10)+'%';
-        el.style.fontSize = (12 + Math.random()*36)+'px';
-        el.style.animationDuration = (6 + Math.random()*8)+'s';
-        el.style.animationDelay = (Math.random()*4)+'s';
-        emojiLayer.appendChild(el);
-        // remove after animation
-        setTimeout(()=>el.remove(),15000 + Math.random()*4000);
-      }
+    function spawnEmoji() {
+      const el = document.createElement('i');
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + '%';
+      el.style.animationDuration = 4 + Math.random() * 6 + 's';
+      el.style.fontSize = 20 + Math.random() * 40 + 'px';
+      emojiLayer.appendChild(el);
+      setTimeout(() => el.remove(), 10000);
     }
-    spawnEmojis(28);
-    // keep spawning slowly
-    setInterval(()=>spawnEmojis(6),3000);
+    setInterval(spawnEmoji, 200);
 
-    /* Canvas for fireworks */
-    const canvas = document.getElementById('fxCanvas');
+    // Fireworks
+    const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
-    let W, H;
-    function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
-    addEventListener('resize',resize); resize();
-
-    // simple fireworks engine
-    const fireworks=[];
-    function rand(min,max){return Math.random()*(max-min)+min}
-    function launchFirework(x,y){
-      const hue = rand(0,360);
-      const count = 18 + Math.floor(rand(6,30));
-      for(let i=0;i<count;i++){
-        fireworks.push({x,y, vx: Math.cos(i/count*Math.PI*2)*rand(1,6), vy: Math.sin(i/count*Math.PI*2)*rand(1,6), life: rand(40,120), age:0, hue, size: rand(1.4,3.6)});
-      }
-    }
-    function updateFireworks(){
-      ctx.globalCompositeOperation='source-over';
-      ctx.fillStyle='rgba(6,8,15,0.18)';
-      ctx.fillRect(0,0,W,H);
-      ctx.globalCompositeOperation='lighter';
-      for(let i=fireworks.length-1;i>=0;i--){
-        const p = fireworks[i];
-        p.age++;
-        p.x += p.vx; p.y += p.vy; p.vy += 0.02; // gravity
-        const lifeRatio = 1 - p.age/p.life;
-        ctx.beginPath();
-        ctx.fillStyle = `hsla(${p.hue},100%,60%,${Math.max(lifeRatio,0)})`;
-        ctx.arc(p.x,p.y,p.size*lifeRatio,0,Math.PI*2);
-        ctx.fill();
-        if(p.age>p.life) fireworks.splice(i,1);
-      }
-    }
-    function loop(){updateFireworks(); requestAnimationFrame(loop)}
-    loop();
-
-    // play a burst at random positions every few seconds for ambience
-    setInterval(()=>{ launchFirework(rand(100,W-100), rand(100,H/2)); }, 2500);
-
-    /* Button click behavior - shows cursive typed message and triggers big fireworks & confetti */
-    const btn = document.getElementById('celebrateBtn');
-    const curiousText = document.getElementById('cursiveText');
-    const message = "Thanks for being the most sweetest and kind-hearted aunty who spreads happiness all around! ☺️❤️";
-
-    function bigBurst(){
-      for(let i=0;i<8;i++) launchFirework(rand(150,W-150), rand(100,H/2));
-    }
-
-    // typed cursive animation
-    function typeCursive(text, el, speed=40){
-      el.style.opacity=1;
-      el.textContent='';
-      let i=0;
-      const caret = document.createElement('span'); caret.className='caret';
-      el.appendChild(caret);
-      const t = setInterval(()=>{
-        // insert before caret
-        if(i<text.length){
-          caret.insertAdjacentText('beforebegin', text[i]);
-          i++;
-          // a little sparkle spawn
-          if(Math.random()>.86) spawnEmojis(1);
-        } else {
-          clearInterval(t);
-          caret.remove();
-          // final flourish fireworks
-          for(let j=0;j<10;j++) setTimeout(()=>bigBurst(), j*200);
-        }
-      }, speed);
-    }
-
-    btn.addEventListener('click', ()=>{
-      // animate headline letters with a quick pop
-      document.querySelectorAll('.glow-letter span').forEach((s,idx)=>{
-        s.style.transform='translateY(-12px) scale(1.03)';
-        s.style.transition='transform .5s cubic-bezier(.2,.8,.2,1)';
-        setTimeout(()=>{ s.style.transform='translateY(0)'; }, 500 + idx*40);
-      });
-
-      // larger emoji shower
-      spawnEmojis(50);
-
-      // big fireworks
-      bigBurst();
-
-      // type message
-      typeCursive(message, curiousText, 36);
+    let W = canvas.width = innerWidth;
+    let H = canvas.height = innerHeight;
+    window.addEventListener('resize', () => {
+      W = canvas.width = innerWidth;
+      H = canvas.height = innerHeight;
     });
 
-    // Add many emoji hearts and smiles floating subtly in the corners (accessible decor)
-    // pre-populate a few stationary ones
-    const cornerCount = 16;
-    for(let i=0;i<cornerCount;i++){
-      const el = document.createElement('i'); el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-      el.style.left = (5 + Math.random()*90)+'%';
-      el.style.top = (5 + Math.random()*80)+'%';
-      el.style.fontSize = (18 + Math.random()*36)+'px';
-      el.style.opacity = 0.9; el.style.animationDuration = (8 + Math.random()*12)+'s';
-      emojiLayer.appendChild(el);
+    const fireworks = [];
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    function createFirework(x, y) {
+      for (let i = 0; i < 60; i++) {
+        fireworks.push({
+          x, y,
+          vx: Math.cos((Math.PI * 2 * i) / 60) * rand(2, 6),
+          vy: Math.sin((Math.PI * 2 * i) / 60) * rand(2, 6),
+          alpha: 1,
+          color: `hsl(${rand(0, 360)}, 100%, 60%)`
+        });
+      }
     }
 
-    // keyboard accessibility: press Enter or Space on button
-    btn.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); btn.click(); } });
+    function drawFireworks() {
+      ctx.fillStyle = 'rgba(255,192,203,0.1)';
+      ctx.fillRect(0, 0, W, H);
+      for (let i = fireworks.length - 1; i >= 0; i--) {
+        const f = fireworks[i];
+        f.x += f.vx;
+        f.y += f.vy;
+        f.vy += 0.05;
+        f.alpha -= 0.01;
+        if (f.alpha <= 0) fireworks.splice(i, 1);
+        else {
+          ctx.globalAlpha = f.alpha;
+          ctx.fillStyle = f.color;
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, 2, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(drawFireworks);
+    }
+    drawFireworks();
 
-    // small initial shimmer on headline
-    setTimeout(()=>{ document.querySelectorAll('.glow-letter span').forEach((s,i)=>{ setTimeout(()=>{ s.style.transform='translateY(-6px)'; setTimeout(()=>s.style.transform='translateY(0)',800) }, i*60) }) }, 700);
+    // Button click
+    const btn = document.getElementById('click-btn');
+    const messageEl = document.getElementById('cursive-message');
+    const message = 'Thanks for being the most sweetest and kind-hearted aunty who spreads happiness all around! ☺️❤️';
 
-    // ensure reduced-motion preference respects users
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(mq.matches){
-      // stop fancy animations
-      document.querySelectorAll('.glow-letter').forEach(e=>e.style.animation='none');
-      setInterval(()=>{},999999);
+    btn.addEventListener('click', () => {
+      for (let i = 0; i < 6; i++) createFirework(rand(100, W - 100), rand(100, H / 2));
+      typeText(message, messageEl);
+    });
+
+    function typeText(text, el) {
+      el.textContent = '';
+      el.style.opacity = 1;
+      let i = 0;
+      const interval = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, 40);
     }
   </script></body>
 </html>
